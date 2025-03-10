@@ -13,15 +13,38 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
+// Authentication middleware
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ error: 'Authentication token is required' });
+    }
+
+    try {
+        // In a real application, verify the JWT token here
+        // For demo purposes, we're just checking if a token exists
+        next();
+    } catch (err) {
+        return res.status(403).json({ error: 'Invalid token' });
+    }
+};
+
 // Swagger API Docs endpoint
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Redirect root to API documentation
+app.get('/', (req, res) => {
+    res.redirect('/api-docs');
+});
 
 /**
  * Products Endpoints
  */
 
 // GET /products - List all products
-app.get('/products', (req, res) => {
+app.get('/products', authenticateToken, (req, res) => {
     res.json(products);
 });
 
@@ -29,7 +52,7 @@ app.get('/products', (req, res) => {
 let products = [];
 
 // POST /products - Create a new product
-app.post('/products', (req, res) => {
+app.post('/products', authenticateToken, (req, res) => {
     const { title, description, price } = req.body;
     if (!title || price === undefined) {
         return res.status(400).json({ error: 'Title and price are required.' });
@@ -54,7 +77,7 @@ app.get('/products/:productId', (req, res) => {
 });
 
 // PUT /products/:productId - Update an existing product
-app.put('/products/:productId', (req, res) => {
+app.put('/products/:productId', authenticateToken, (req, res) => {
     const { productId } = req.params;
     const { title, description, price } = req.body;
     const productIndex = products.findIndex(p => p.id === productId);
@@ -68,7 +91,7 @@ app.put('/products/:productId', (req, res) => {
 });
 
 // DELETE /products/:productId - Delete a product
-app.delete('/products/:productId', (req, res) => {
+app.delete('/products/:productId', authenticateToken, (req, res) => {
     const { productId } = req.params;
     const productIndex = products.findIndex(p => p.id === productId);
     if (productIndex === -1) return res.status(404).json({ error: 'Product not found.' });
@@ -84,7 +107,7 @@ app.delete('/products/:productId', (req, res) => {
 // In-memory store for checkout sessions
 let checkouts = [];
 
-app.post('/checkout', (req, res) => {
+app.post('/checkout', authenticateToken, (req, res) => {
     const { productId, quantity = 1, customerEmail } = req.body;
     if (!productId || !customerEmail) {
         return res.status(400).json({ error: 'Product ID and customer email are required.' });

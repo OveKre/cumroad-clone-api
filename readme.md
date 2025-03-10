@@ -3,33 +3,21 @@
 
 # Gumroad Clone API
 
-## Projekti kirjeldus
-See API on **Gumroad** platvormi kloon, mis võimaldab digitaalsete toodete müümist. See API sisaldab lõpp-punkte toodete haldamiseks, kasutajate registreerimiseks, müügi jälgimiseks, ostu seansside loomiseks ja muud funktsionaalsust.
+API for digital product sales platform.
 
-Projekti eesmärgiks on võimaldada loojatel hallata tooteid, töötada ostu seanssidega, jälgida müüke ja hallata kasutajaid.
+## Installation
 
-## Funktsioonid:
-- Looge, uuendage, kustutage ja loetlege tooteid.
-- Looge kontrollimisprotsesside (checkout sessions) jaoks API lõpp-punkt.
-- Loetlege müüke ja hallake kasutajaid.
-- Toetab turvalisust **Bearer tokeniga** autentimise kaudu.
-
-## Installimine
-
-
-1. **Klooni projekt:**
-   ```bash
-   git clone https://github.com/OveKre/CumroadCloneAPI
-
-## Install
-
-```sh
+1. Clone the repository
+2. Install dependencies:
+```bash
 npm install
 ```
-
-
-```sh
+3. Copy `.env.example` to `.env` and configure the environment variables
+4. Start the server:
+```bash
 node server.js
 ```
 
-API URL: Server töötab http://localhost:3000/api-docs
+## API Documentation
+
+API documentation is available at `/api-docs` endpoint when the server is running.
