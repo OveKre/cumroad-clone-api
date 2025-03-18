@@ -6,7 +6,7 @@ info:
     This API is a clone of the Gumroad platform for selling digital products.
     It allows creators to manage products, handle checkouts, process sales, and manage users.
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3002
 security:
   - BearerAuth: []  # Global security requirement; all endpoints require a Bearer token.
 paths:
