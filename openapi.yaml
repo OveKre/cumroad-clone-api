@@ -207,6 +207,7 @@ paths:
                   $ref: '#/components/schemas/User'
     post:
       summary: Create a new user (sign up)
+      security: [] # Override global security for this endpoint - no authentication required
       requestBody:
         description: User sign-up details.
         required: true

@@ -161,14 +161,11 @@ paths:
             schema:
               $ref: '#/components/schemas/CheckoutRequest'
       responses:
-        200:
-          description: New response
+        '200':
+          description: Checkout session created.
           content:
             application/json:
-
-
-
-  schema:
+              schema:
         '201':
           description: Checkout session created.
           content:
@@ -256,10 +253,7 @@ paths:
       tags:
         - USERS
       summary: Create a new user (sign up)
-      security:
-        - BearerAuth: []
-      parameters:
-        - $ref: '#/components/parameters/AuthorizationHeader'
+      # Removed security requirement for user registration
       requestBody:
         description: User sign-up details.
         required: true
@@ -304,12 +298,52 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
         '404':
+  /sessions:
+    post:
+      tags:
+        - USERS
+      summary: Login user (create a session)
+      requestBody:
+        description: User login credentials.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '201':
+          description: Login successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Bad Request – Missing or invalid login data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized – Invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
           description: User not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      description: Bearer token for authentication.
+      required: true
+      schema:
+        type: string
   schemas:
     Product:
       type: object
@@ -317,9 +351,9 @@ components:
         id:
           type: string
           description: Unique identifier for the product.
-        title:
+        name:
           type: string
-          description: Title of the product.
+          description: Name of the product.
         description:
           type: string
           description: Detailed description of the product.
@@ -333,14 +367,14 @@ components:
           description: Public URL for the product.
       required:
         - id
-        - title
+        - name
         - price
     NewProduct:
       type: object
       properties:
-        title:
+        name:
           type: string
-          description: Title of the product.
+          description: Name of the product.
         description:
           type: string
           description: Detailed description of the product.
@@ -349,14 +383,14 @@ components:
           format: float
           description: Price of the product.
       required:
-        - title
+        - name
         - price
     ProductUpdate:
       type: object
       properties:
-        title:
+        name:
           type: string
-          description: Title of the product.
+          description: Name of the product.
         description:
           type: string
           description: Detailed description of the product.
@@ -450,22 +484,37 @@ components:
       required:
         - email
         - password
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+        password:
+          type: string
+          description: Password for the account.
+      required:
+        - email
+        - password
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Authentication token to be used for subsequent requests.
+        user:
+          $ref: '#/components/schemas/User'
+          description: User details.
+      required:
+        - token
+        - user
     ErrorResponse:
       type: object
       properties:
         error:
           type: string
           description: Detailed error message.
-  parameters:
-    AuthorizationHeader:
-      name: Authorization
-      in: header
-      description: >
-        Bearer token required for authorization.
-        Example: "Bearer your_jwt_token"
-      required: true
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

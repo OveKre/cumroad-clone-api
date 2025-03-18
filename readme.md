@@ -1,7 +1,7 @@
 
 
 
-# Gumroad Clone API
+# gumroad-clone-api
 
 API for digital product sales platform.
 
