@@ -1,0 +1,862 @@
+openapi: 3.0.0
+info:
+  title: Gumroad Klooni API
+  description: API digitaalsete toodete müügiplatvormi jaoks lihtsa kassasüsteemiga
+  version: 1.0.0
+servers:
+  - url: /
+tags:
+  - name: users
+    description: Kasutajate haldamise operatsioonid
+  - name: products
+    description: Digitaalsete toodete operatsioonid
+  - name: orders
+    description: Tellimuste haldamine
+  - name: sessions
+    description: Autentimissessioonid
+
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Kõikide kasutajate kuvamine
+      description: Tagastab kõikide kasutajate nimekirja
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Kasutajate nimekiri
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - users
+      summary: Uue kasutaja loomine
+      description: Loob uue kasutajakonto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+            example:
+              email: kasutaja@näidis.ee
+              password: turvalineParool123
+              name: Jaan Tamm
+      responses:
+        '201':
+          description: Kasutaja edukalt loodud
+          headers:
+            Location:
+              schema:
+                type: string
+              description: URL uue kasutaja juurde
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /users/{id}:
+    get:
+      tags:
+        - users
+      summary: Kasutaja kuvamine ID järgi
+      description: Tagastab ühe kasutaja info
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Kasutaja leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Kasutajat ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - users
+      summary: Kasutaja uuendamine
+      description: Uuendab kasutaja informatsiooni
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+            example:
+              name: Mari Mets
+              bio: Digitaalsete toodete looja
+      responses:
+        '200':
+          description: Kasutaja edukalt uuendatud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Kasutajat ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - users
+      summary: Kasutaja kustutamine
+      description: Kustutab kasutajakonto
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Kasutaja edukalt kustutatud
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Kasutajat ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /products:
+    get:
+      tags:
+        - products
+      summary: Kõikide toodete kuvamine
+      description: Tagastab toodete nimekirja
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtreeri tooteid kasutaja ID järgi
+      responses:
+        '200':
+          description: Toodete nimekiri
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - products
+      summary: Uue toote loomine
+      description: Loob uue digitaalse toote
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+            example:
+              name: Digitaalse Turunduse Juhend
+              description: Põhjalik juhend digitaalse turunduse kohta
+              price: 19.99
+              fileUrl: https://näidis.ee/failid/turunduse-juhend.pdf
+      responses:
+        '201':
+          description: Toode edukalt loodud
+          headers:
+            Location:
+              schema:
+                type: string
+              description: URL uue toote juurde
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: Toote kuvamine ID järgi
+      description: Tagastab ühe toote info
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Toode leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Toodet ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - products
+      summary: Toote uuendamine
+      description: Uuendab toote informatsiooni
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdate'
+            example:
+              name: Uuendatud Digitaalse Turunduse Juhend
+              price: 24.99
+              description: Parandatud ja uuendatud turunduse juhend
+      responses:
+        '200':
+          description: Toode edukalt uuendatud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Toodet ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - products
+      summary: Toote kustutamine
+      description: Kustutab toote
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Toode edukalt kustutatud
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Toodet ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /orders:
+    get:
+      tags:
+        - orders
+      summary: Kõikide tellimuste kuvamine
+      description: Tagastab tellimuste nimekirja
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtreeri tellimusi kasutaja ID järgi
+        - name: productId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filtreeri tellimusi toote ID järgi
+      responses:
+        '200':
+          description: Tellimuste nimekiri
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - orders
+      summary: Uue tellimuse loomine
+      description: Esitab uue tellimuse digitaalse toote jaoks
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+            example:
+              productId: toode123
+              email: klient@näidis.ee
+              paymentMethod: card
+              paymentDetails:
+                cardNumber: "4242424242424242"
+                expiryMonth: "12"
+                expiryYear: "2025"
+                cvc: "123"
+      responses:
+        '201':
+          description: Tellimus edukalt loodud
+          headers:
+            Location:
+              schema:
+                type: string
+              description: URL uue tellimuse juurde
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /orders/{id}:
+    get:
+      tags:
+        - orders
+      summary: Tellimuse kuvamine ID järgi
+      description: Tagastab ühe tellimuse info
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tellimus leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tellimust ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - orders
+      summary: Tellimuse uuendamine
+      description: Uuendab tellimuse informatsiooni
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderUpdate'
+            example:
+              status: completed
+      responses:
+        '200':
+          description: Tellimus edukalt uuendatud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tellimust ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - orders
+      summary: Tellimuse kustutamine
+      description: Kustutab tellimuse
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Tellimus edukalt kustutatud
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tellimust ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /sessions:
+    post:
+      tags:
+        - sessions
+      summary: Uue sessiooni loomine (sisselogimine)
+      description: Logib sisse ja loob uue autentimissessiooni
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionCreate'
+            example:
+              email: kasutaja@näidis.ee
+              password: turvalineParool123
+      responses:
+        '201':
+          description: Sessioon edukalt loodud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '400':
+          description: Vigane sisend
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Vigased sisselogimisandmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - sessions
+      summary: Praeguse sessiooni lõpetamine (väljalogimine)
+      description: Logib välja ja lõpetab praeguse autentimissessiooni
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Sessioon edukalt lõpetatud
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /sessions/{id}:
+    delete:
+      tags:
+        - sessions
+      summary: Sessiooni kustutamine ID järgi
+      description: Logib välja ja kustutab autentimissessiooni ID järgi
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Sessioon edukalt kustutatud
+        '401':
+          description: Autoriseerimata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Sessiooni ei leitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        bio:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - email
+        - name
+        - createdAt
+        - updatedAt
+
+    UserCreate:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+          minLength: 8
+        name:
+          type: string
+        bio:
+          type: string
+      required:
+        - email
+        - password
+        - name
+
+    UserUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        bio:
+          type: string
+        password:
+          type: string
+          format: password
+          minLength: 8
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        fileUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - userId
+        - name
+        - price
+        - fileUrl
+        - createdAt
+        - updatedAt
+
+    ProductCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        fileUrl:
+          type: string
+      required:
+        - name
+        - price
+        - fileUrl
+
+    ProductUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        fileUrl:
+          type: string
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        product:
+          $ref: '#/components/schemas/Product'
+        email:
+          type: string
+          format: email
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        downloadUrl:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - productId
+        - email
+        - status
+        - createdAt
+        - updatedAt
+
+    OrderCreate:
+      type: object
+      properties:
+        productId:
+          type: string
+        email:
+          type: string
+          format: email
+        paymentMethod:
+          type: string
+          enum: [card, paypal]
+        paymentDetails:
+          type: object
+      required:
+        - productId
+        - email
+        - paymentMethod
+
+    OrderUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        downloadUrl:
+          type: string
+
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        token:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - userId
+        - token
+        - expiresAt
+
+    SessionCreate:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+      required:
+        - email
+        - password
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        field:
+          type: string
+      required:
+        - message
