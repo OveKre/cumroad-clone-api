@@ -3,7 +3,7 @@
  */
 
 // Import error codes
-const { HTTP_STATUS, ERROR_CODES } = require('../utils/errorCodes');
+const { HTTP_STATUS, ERROR_CODES } = require('../../utils/errorCodes');
 
 /**
  * Global error handling middleware
@@ -28,7 +28,7 @@ const errorHandler = (err, req, res, next) => {
       field: e.path,
       message: e.message,
     }));
-    
+
     return res.status(HTTP_STATUS.BAD_REQUEST).json({
       code: ERROR_CODES.REQUIRED_FIELD.code,
       error: 'VALIDATION_ERROR',
@@ -40,7 +40,7 @@ const errorHandler = (err, req, res, next) => {
   // Handle Sequelize unique constraint errors
   if (err.name === 'SequelizeUniqueConstraintError') {
     const field = err.errors[0].path;
-    
+
     return res.status(HTTP_STATUS.BAD_REQUEST).json({
       code: ERROR_CODES.EMAIL_IN_USE.code,
       error: 'UNIQUE_CONSTRAINT_ERROR',

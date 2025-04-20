@@ -13,16 +13,16 @@ const path = require('path');
 const fs = require('fs');
 
 // Import routes
-const userRoutes = require('./routes/users');
-const productRoutes = require('./routes/products');
-const orderRoutes = require('./routes/orders');
-const sessionRoutes = require('./routes/sessions');
+const userRoutes = require('./src/routes/users');
+const productRoutes = require('./src/routes/products');
+const orderRoutes = require('./src/routes/orders');
+const sessionRoutes = require('./src/routes/sessions');
 
 // Import middleware
-const errorHandler = require('./middleware/errorHandler');
+const errorHandler = require('./src/middleware/errorHandler');
 
 // Import database
-const db = require('./config/database');
+const db = require('./src/config/database');
 
 // Initialize Express app
 const app = express();

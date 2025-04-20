@@ -5,7 +5,7 @@
 // Import dependencies
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/auth');
-const { HTTP_STATUS, ERROR_CODES } = require('../utils/errorCodes');
+const { HTTP_STATUS, ERROR_CODES } = require('../../utils/errorCodes');
 
 /**
  * Middleware to verify JWT token
@@ -25,10 +25,10 @@ const authenticate = (req, res, next) => {
   try {
     // Verify token
     const decoded = jwt.verify(token, jwtSecret);
-    
+
     // Add user data to request
     req.user = decoded;
-    
+
     // Continue to next middleware
     next();
   } catch (error) {

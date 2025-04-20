@@ -4,8 +4,8 @@
 
 // Import dependencies
 const User = require('../models/user');
-const { HTTP_STATUS, ERROR_CODES } = require('../utils/errorCodes');
-const { validateUserRegistration } = require('../utils/validation');
+const { HTTP_STATUS, ERROR_CODES } = require('../../utils/errorCodes');
+const { validateUserRegistration } = require('../../utils/validation');
 
 /**
  * Get all users
