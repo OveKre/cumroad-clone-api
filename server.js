@@ -16,7 +16,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`API Documentation available at:`);
   console.log(`- http://localhost:${PORT}/api-docs (English)`);
-  console.log(`- http://localhost:${PORT}/api-docs/et (Estonian)`);
   console.log(`- http://localhost:${PORT}/en (English)`);
   console.log(`- http://localhost:${PORT}/et (Estonian)`);
 });
