@@ -51,7 +51,7 @@ paths:
               $ref: '#/components/schemas/UserInput'
             example:
               email: user@example.com
-              password: password123
+              password: "[REDACTED]"
               name: John Doe
       responses:
         '201':
@@ -69,6 +69,8 @@ paths:
                 updatedAt: '2023-01-01T00:00:00.000Z'
         '400':
           $ref: '#/components/responses/ValidationError'
+        '409':
+          $ref: '#/components/responses/Conflict'
         '500':
           $ref: '#/components/responses/InternalServerError'
   /users/{id}:
@@ -122,6 +124,7 @@ paths:
               $ref: '#/components/schemas/UserUpdateInput'
             example:
               name: John Updated
+              password: "[REDACTED]"
       responses:
         '200':
           description: User updated successfully
@@ -193,7 +196,7 @@ paths:
                   format: password
             example:
               email: user@example.com
-              password: password123
+              password: "[REDACTED]"
       responses:
         '201':
           description: Login successful
@@ -663,6 +666,7 @@ components:
         password:
           type: string
           format: password
+          writeOnly: true
           minLength: 8
         name:
           type: string
@@ -674,6 +678,7 @@ components:
         password:
           type: string
           format: password
+          writeOnly: true
           minLength: 8
     Product:
       type: object
@@ -769,66 +774,126 @@ components:
         status:
           type: string
           enum: [pending, completed, cancelled]
-    Error:
+    ProblemDetail:
       type: object
+      description: RFC 7807 Problem Details for HTTP APIs
+      required:
+        - type
+        - title
+        - status
+        - detail
       properties:
+        type:
+          type: string
+          format: uri
+          description: A URI reference that identifies the problem type
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+        status:
+          type: integer
+          description: The HTTP status code
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem
+        instance:
+          type: string
+          format: uri-reference
+          description: A URI reference that identifies the specific occurrence of the problem
         code:
           type: integer
-        error:
-          type: string
-        message:
-          type: string
+          description: Application-specific error code
         field:
           type: string
+          description: The field that caused the error, if applicable
+        errors:
+          type: array
+          description: List of validation errors
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
   responses:
     ValidationError:
       description: Validation error
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/invalid-password"
+            title: "Invalid Password"
+            status: 422
+            detail: "Password must be at least 8 characters long"
+            instance: "/validation/password"
             code: 1002
-            error: INVALID_PASSWORD
-            message: Password must be at least 8 characters long
-            field: password
+            field: "password"
     Unauthorized:
       description: Unauthorized
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/authentication-required"
+            title: "Authentication Required"
+            status: 401
+            detail: "Authentication is required to access this resource"
+            instance: "/auth/token"
             code: 2001
-            error: AUTHENTICATION_REQUIRED
-            message: Authentication is required to access this resource
     Forbidden:
       description: Forbidden
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/unauthorized"
+            title: "Unauthorized"
+            status: 403
+            detail: "Not authorized to perform this action"
+            instance: "/auth/permission"
             code: 2003
-            error: UNAUTHORIZED
-            message: Not authorized to perform this action
     NotFound:
       description: Resource not found
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/resource-not-found"
+            title: "Resource Not Found"
+            status: 404
+            detail: "The requested resource was not found"
+            instance: "/resource"
             code: 3001
-            error: RESOURCE_NOT_FOUND
-            message: The requested resource was not found
+    Conflict:
+      description: Conflict with current state of the resource
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: "https://docs.digikaup.online/errors/email-in-use"
+            title: "Email Already Registered"
+            status: 409
+            detail: "The email address is already registered"
+            instance: "/validation/email"
+            code: 1003
+            field: "email"
     InternalServerError:
       description: Internal server error
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/server-error"
+            title: "Server Error"
+            status: 500
+            detail: "An unexpected server error occurred"
+            instance: "/server"
             code: 5001
-            error: SERVER_ERROR
-            message: An unexpected server error occurred

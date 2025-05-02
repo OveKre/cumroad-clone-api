@@ -1,12 +1,10 @@
 /**
  * User Model
  */
-
 // Import dependencies
 const { DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const sequelize = require('../config/database');
-
 // Define User model
 const User = sequelize.define('User', {
   id: {
@@ -53,8 +51,11 @@ const User = sequelize.define('User', {
       }
     },
   },
+  // Add defaultScope to exclude password by default
+  defaultScope: {
+    attributes: { exclude: ['password'] },
+  },
 });
-
 /**
  * Compare password with hashed password
  * @param {string} password - Password to compare
@@ -63,5 +64,12 @@ const User = sequelize.define('User', {
 User.prototype.comparePassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
-
+/**
+ * Override toJSON method to exclude password
+ */
+User.prototype.toJSON = function() {
+  const values = Object.assign({}, this.get());
+  delete values.password;
+  return values;
+};
 module.exports = User;

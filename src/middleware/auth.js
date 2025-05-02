@@ -6,11 +6,12 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/auth');
 const { HTTP_STATUS, ERROR_CODES } = require('../../utils/errorCodes');
+const BlacklistedToken = require('../models/blacklistedToken');
 
 /**
  * Middleware to verify JWT token
  */
-const authenticate = (req, res, next) => {
+const authenticate = async (req, res, next) => {
   // Get authorization header
   const authHeader = req.headers.authorization;
 
@@ -23,6 +24,12 @@ const authenticate = (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
+    // Check if token is blacklisted
+    const blacklistedToken = await BlacklistedToken.findOne({ where: { token } });
+    if (blacklistedToken) {
+      return res.status(HTTP_STATUS.UNAUTHORIZED).json(ERROR_CODES.INVALID_CREDENTIALS);
+    }
+
     // Verify token
     const decoded = jwt.verify(token, jwtSecret);
 

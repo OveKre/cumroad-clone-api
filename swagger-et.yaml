@@ -53,6 +53,12 @@ paths:
               email: kasutaja@näide.ee
               password: parool123
               name: Jaan Tamm
+              encoding:
+              password:
+                style: form
+                explode: true
+                allowReserved: true
+                x-showPassword: false
       responses:
         '201':
           description: Kasutaja edukalt loodud
@@ -69,6 +75,8 @@ paths:
                 updatedAt: '2023-01-01T00:00:00.000Z'
         '400':
           $ref: '#/components/responses/ValidationError'
+        '409':
+          $ref: '#/components/responses/Conflict'
         '500':
           $ref: '#/components/responses/InternalServerError'
   /users/{id}:
@@ -769,66 +777,127 @@ components:
         status:
           type: string
           enum: [pending, completed, cancelled]
-    Error:
+    ProblemDetail:
       type: object
+      description: RFC 7807 Probleemi detailid HTTP API-de jaoks
+      required:
+        - type
+        - title
+        - status
+        - detail
       properties:
+        type:
+          type: string
+          format: uri
+          description: URI viide, mis identifitseerib probleemi tüübi
+        title:
+          type: string
+          description: Lühike, inimloetav kokkuvõte probleemi tüübist
+        status:
+          type: integer
+          description: HTTP oleku kood
+        detail:
+          type: string
+          description: Inimloetav selgitus, mis on spetsiifiline sellele probleemi esinemisele
+        instance:
+          type: string
+          format: uri-reference
+          description: URI viide, mis identifitseerib probleemi konkreetse esinemise
         code:
           type: integer
-        error:
-          type: string
-        message:
-          type: string
+          description: Rakenduse-spetsiifiline veakood
         field:
           type: string
+          description: Väli, mis põhjustas vea, kui see on asjakohane
+        errors:
+          type: array
+          description: Valideerimise vigade nimekiri
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
   responses:
     ValidationError:
       description: Valideerimise viga
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/invalid-password"
+            title: "Vigane Parool"
+            status: 422
+            detail: "Parool peab olema vähemalt 8 tähemärki pikk"
+            instance: "/validation/password"
             code: 1002
-            error: INVALID_PASSWORD
-            message: Parool peab olema vähemalt 8 tähemärki pikk
-            field: password
+            field: "password"
     Unauthorized:
       description: Autentimata
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/authentication-required"
+            title: "Autentimine Vajalik"
+            status: 401
+            detail: "Ressursile juurdepääsuks on vajalik autentimine"
+            instance: "/auth/token"
             code: 2001
-            error: AUTHENTICATION_REQUIRED
-            message: Ressursile juurdepääsuks on vajalik autentimine
     Forbidden:
       description: Keelatud
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/unauthorized"
+            title: "Autoriseerimata"
+            status: 403
+            detail: "Pole õigust seda toimingut teha"
+            instance: "/auth/permission"
             code: 2003
-            error: UNAUTHORIZED
-            message: Pole õigust seda toimingut teha
     NotFound:
       description: Ressurssi ei leitud
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/resource-not-found"
+            title: "Ressurssi Ei Leitud"
+            status: 404
+            detail: "Soovitud ressurssi ei leitud"
+            instance: "/resource"
             code: 3001
-            error: RESOURCE_NOT_FOUND
-            message: Soovitud ressurssi ei leitud
+    Conflict:
+      description: Konflikt ressursi praeguse olekuga
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: "https://docs.digikaup.online/errors/email-in-use"
+            title: "E-post Juba Registreeritud"
+            status: 409
+            detail: "See e-posti aadress on juba registreeritud"
+            instance: "/validation/email"
+            code: 1003
+            field: "email"
     InternalServerError:
       description: Serveri sisemine viga
       content:
-        application/json:
+        application/problem+json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ProblemDetail'
           example:
+            type: "https://docs.digikaup.online/errors/server-error"
+            title: "Serveri Viga"
+            status: 500
+            detail: "Tekkis ootamatu serveri viga"
+            instance: "/server"
             code: 5001
-            error: SERVER_ERROR
-            message: Tekkis ootamatu serveri viga
+

@@ -24,6 +24,15 @@ const errorHandler = require('./src/middleware/errorHandler');
 // Import database
 const db = require('./src/config/database');
 
+// Import models
+require('./src/models/user');
+require('./src/models/product');
+require('./src/models/order');
+require('./src/models/blacklistedToken');
+
+// Import token cleanup utility
+const { cleanupExpiredTokens } = require('./utils/tokenCleanup');
+
 // Initialize Express app
 const app = express();
 
@@ -34,7 +43,24 @@ db.authenticate()
 
 // Sync database models
 db.sync()
-  .then(() => console.log('Database synced'))
+  .then(() => {
+    console.log('Database synced');
+
+    // Set up periodic cleanup of expired tokens (every hour)
+    setInterval(async () => {
+      try {
+        const count = await cleanupExpiredTokens();
+        console.log(`Scheduled cleanup: removed ${count} expired tokens`);
+      } catch (error) {
+        console.error('Error in scheduled token cleanup:', error);
+      }
+    }, 60 * 60 * 1000); // 1 hour
+
+    // Initial cleanup on startup
+    cleanupExpiredTokens()
+      .then(count => console.log(`Initial cleanup: removed ${count} expired tokens`))
+      .catch(error => console.error('Error in initial token cleanup:', error));
+  })
   .catch(err => console.error('Database sync error:', err));
 
 // Middleware
