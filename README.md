@@ -25,31 +25,31 @@ A RESTful API for an e-commerce platform.
 ## Running the API
 
 ### Development mode
-Enne arendusserveri käivitamist paigalda concurrently:
+Before starting the development server, install concurrently:
 ```
 npm install concurrently --save-dev
 ```
 
-NB! Kui paigaldad concurrently, siis package.json faili skriptid ei muutu automaatselt.
-Lisa ise backend package.json faili scripts sektsiooni näiteks selline rida:
+Note: Installing concurrently does not automatically add the script to your package.json file.
+Add the following line manually to the scripts section of your backend package.json:
 ```
 "dev": "concurrently \"npm run start\" \"cd frontend && npm run dev\""
 ```
 
-Seejärel käivita arendusserver:
+Then start the development server:
 ```
 npm run dev
 ```
 
-Kui soovid käivitada backend ja frontend eraldi, liigu esmalt frontend kausta:
+If you want to run the backend and frontend separately, first navigate to the frontend folder:
 ```
 cd frontend
 ```
-ja käivita frontend:
+and start the frontend:
 ```
 npm run dev
 ```
-Backendi saad käivitada projekti juurkaustas:
+You can start the backend from the project root folder:
 ```
 npm run start
 ```
