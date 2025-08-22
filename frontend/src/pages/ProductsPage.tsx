@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/Messages';
-import { Package, Search, Filter, Grid, List } from 'lucide-react';
+import { FiPackage, FiSearch, FiFilter, FiGrid, FiList } from 'react-icons/fi';
 import type { Product } from '../lib/types';
 
 interface ProductCardProps {
@@ -28,7 +28,7 @@ function ProductCard({ product, viewMode }: ProductCardProps) {
               />
             ) : (
               <div className="w-full sm:w-32 h-32 bg-secondary-200 rounded-lg flex items-center justify-center">
-                <Package className="h-8 w-8 text-secondary-400" />
+                <FiPackage className="h-8 w-8 text-secondary-400" />
               </div>
             )}
           </div>
@@ -84,7 +84,7 @@ function ProductCard({ product, viewMode }: ProductCardProps) {
           />
         ) : (
           <div className="w-full h-48 bg-secondary-200 rounded-lg flex items-center justify-center">
-            <Package className="h-12 w-12 text-secondary-400" />
+            <FiPackage className="h-12 w-12 text-secondary-400" />
           </div>
         )}
       </div>
@@ -162,7 +162,7 @@ export function ProductsPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-400" />
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-400" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -182,7 +182,7 @@ export function ProductsPage() {
                     : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
                 }`}
               >
-                <Grid className="h-5 w-5" />
+                <FiGrid className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
@@ -192,7 +192,7 @@ export function ProductsPage() {
                     : 'bg-secondary-100 text-secondary-600 hover:bg-secondary-200'
                 }`}
               >
-                <List className="h-5 w-5" />
+                <FiList className="h-5 w-5" />
               </button>
             </div>
 
@@ -201,7 +201,7 @@ export function ProductsPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center space-x-2 btn-secondary"
             >
-              <Filter className="h-4 w-4" />
+              <FiFilter className="h-4 w-4" />
               <span>Filters</span>
             </button>
           </div>
@@ -276,7 +276,7 @@ export function ProductsPage() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <Package className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
+            <FiPackage className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-secondary-900 mb-2">
               No products found
             </h3>

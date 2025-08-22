@@ -1,0 +1,532 @@
+{
+  "config": {
+    "configFile": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\playwright.config.js",
+    "rootDir": "C:/projektid/cumroad-clone-api/tests/automation/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "reports/playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/test-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "reports/junit-results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/projektid/cumroad-clone-api/tests/automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/projektid/cumroad-clone-api/tests/automation/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth.test.js",
+      "file": "auth.test.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication Flow",
+          "file": "auth.test.js",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-001: Successful login with valid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9419,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:09.461Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-bbe7e5e5643a21a95819",
+              "file": "auth.test.js",
+              "line": 19,
+              "column": 3
+            },
+            {
+              "title": "TC-002: Failed login with invalid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 17788,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n\n    at Object.expectErrorMessage (C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js:161:65)\n    at C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js:73:5",
+                        "location": {
+                          "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                          "column": 65,
+                          "line": 161
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\helpers\\testHelpers.js:161\n\n\u001b[0m \u001b[90m 159 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page contains error:'\u001b[39m\u001b[33m,\u001b[39m pageContent\u001b[33m.\u001b[39mincludes(\u001b[32m'error'\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 160 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"error-message\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(message)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 162 |\u001b[39m   }\u001b[33m,\u001b[39m\n \u001b[90m 163 |\u001b[39m\n \u001b[90m 164 |\u001b[39m   \u001b[36masync\u001b[39m expectProductCreated(page\u001b[33m,\u001b[39m productName) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                            "column": 65,
+                            "line": 161
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\helpers\\testHelpers.js:161\n\n\u001b[0m \u001b[90m 159 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page contains error:'\u001b[39m\u001b[33m,\u001b[39m pageContent\u001b[33m.\u001b[39mincludes(\u001b[32m'error'\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 160 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"error-message\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(message)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 162 |\u001b[39m   }\u001b[33m,\u001b[39m\n \u001b[90m 163 |\u001b[39m\n \u001b[90m 164 |\u001b[39m   \u001b[36masync\u001b[39m expectProductCreated(page\u001b[33m,\u001b[39m productName) {\u001b[0m\n\u001b[2m    at Object.expectErrorMessage (C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js:161:65)\u001b[22m\n\u001b[2m    at C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js:73:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Network responses: [\n  { url: \u001b[32m'http://localhost:3002/sessions'\u001b[39m, status: \u001b[33m401\u001b[39m },\n  { url: \u001b[32m'http://localhost:5173/login'\u001b[39m, status: \u001b[33m200\u001b[39m },\n  { url: \u001b[32m'http://localhost:5173/@vite/client'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  {\n    url: \u001b[32m'http://localhost:5173/src/main.tsx?t=1755896601775'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  { url: \u001b[32m'http://localhost:5173/@react-refresh'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-JOFQVQT6.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-WOOG5QLI.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-DSM2NOFT.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/vite/dist/client/env.mjs'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/index.css?t=1755896601775'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/App.tsx?t=1755896601775'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query-devtools.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-E3WM7SMZ.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-GE7WVSOR.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-UV2IVRSK.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/contexts/AuthContext.tsx'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/components/Navbar.tsx?t=1755891464891'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/components/Footer.tsx'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react-icons_fi.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/components/ProtectedRoute.tsx'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/HomePage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/LoginPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/react-hook-form.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/@hookform_resolvers_zod.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-KKWC7L6V.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-CTPGWJ77.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/RegisterPage.tsx?t=1755896601775'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/ProductsPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/ProductDetailPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/CreateProductPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/MyProductsPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/pages/EditProductPage.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  { url: \u001b[32m'http://localhost:5173/src/TestPage.tsx'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  { url: \u001b[32m'http://localhost:5173/src/lib/api.ts'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/axios.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/components/LoadingSpinner.tsx'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/hooks/useProducts.ts'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/src/components/Messages.tsx?t=1755893777656'\u001b[39m,\n    status: \u001b[33m304\u001b[39m\n  },\n  { url: \u001b[32m'http://localhost:5173/src/lib/validation.ts'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  { url: \u001b[32m'http://localhost:5173/src/hooks/useOrders.ts'\u001b[39m, status: \u001b[33m304\u001b[39m },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/zod.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/EDEL3XIZ-MXTYWUC5.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  },\n  {\n    url: \u001b[32m'http://localhost:5173/node_modules/.vite/deps/chunk-BDK6UKTR.js?v=5fa44322'\u001b[39m,\n    status: \u001b[33m200\u001b[39m\n  }\n]\n"
+                        },
+                        {
+                          "text": "Error element visible: \u001b[33mfalse\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page contains \"invalid\": \u001b[33mfalse\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page contains \"error\": \u001b[33mfalse\u001b[39m\n"
+                        },
+                        {
+                          "text": "Error message visible: \u001b[33mfalse\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page contains error: \u001b[33mtrue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:09.526Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                        "column": 65,
+                        "line": 161
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-7128111750d45d968d57",
+              "file": "auth.test.js",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "TC-003: Successful user registration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10715,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "PAGE LOG: [vite] connecting...\n"
+                        },
+                        {
+                          "text": "PAGE LOG: [vite] connected.\n"
+                        },
+                        {
+                          "text": "PAGE LOG: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold\n"
+                        },
+                        {
+                          "text": "PAGE LOG: ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.\n"
+                        },
+                        {
+                          "text": "PAGE LOG: ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.\n"
+                        },
+                        {
+                          "text": "Clicking register button...\n"
+                        },
+                        {
+                          "text": "Waiting for backend responses...\n"
+                        },
+                        {
+                          "text": "Backend responses: [\n  { url: \u001b[32m'http://localhost:3002/users'\u001b[39m, status: \u001b[33m201\u001b[39m },\n  { url: \u001b[32m'http://localhost:3002/sessions'\u001b[39m, status: \u001b[33m201\u001b[39m }\n]\n"
+                        },
+                        {
+                          "text": "Successfully redirected to dashboard\n"
+                        },
+                        {
+                          "text": "Network responses: [\n  { url: \u001b[32m'http://localhost:3002/products'\u001b[39m, status: \u001b[33m200\u001b[39m },\n  { url: \u001b[32m'http://localhost:3002/users'\u001b[39m, status: \u001b[33m201\u001b[39m },\n  { url: \u001b[32m'http://localhost:3002/sessions'\u001b[39m, status: \u001b[33m201\u001b[39m }\n]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:09.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-2d63a190e7c9caf17d0e",
+              "file": "auth.test.js",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "TC-004: Successful logout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 8406,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:09.559Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-339613349413d56c5f81",
+              "file": "auth.test.js",
+              "line": 117,
+              "column": 3
+            },
+            {
+              "title": "Protected route access without authentication",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2938,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:19.060Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-78471160bc1ddea30822",
+              "file": "auth.test.js",
+              "line": 134,
+              "column": 3
+            },
+            {
+              "title": "Token expiry handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Requires backend configuration for short token expiry",
+                      "location": {
+                        "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js",
+                        "line": 145,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 2817,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:19.724Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "Requires backend configuration for short token expiry",
+                          "location": {
+                            "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js",
+                            "line": 145,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "2d73e6464033218f2952-8ee16885c406265a7c3c",
+              "file": "auth.test.js",
+              "line": 142,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Authentication Security Tests",
+          "file": "auth.test.js",
+          "line": 149,
+          "column": 6,
+          "specs": [
+            {
+              "title": "SQL Injection protection in login form",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 9307,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n\n    at Object.expectErrorMessage (C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js:161:65)\n    at C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js:161:5",
+                        "location": {
+                          "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                          "column": 65,
+                          "line": 161
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m..\\helpers\\testHelpers.js:161\n\n\u001b[0m \u001b[90m 159 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page contains error:'\u001b[39m\u001b[33m,\u001b[39m pageContent\u001b[33m.\u001b[39mincludes(\u001b[32m'error'\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 160 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"error-message\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(message)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 162 |\u001b[39m   }\u001b[33m,\u001b[39m\n \u001b[90m 163 |\u001b[39m\n \u001b[90m 164 |\u001b[39m   \u001b[36masync\u001b[39m expectProductCreated(page\u001b[33m,\u001b[39m productName) {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                            "column": 65,
+                            "line": 161
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-testid=\"error-message\"]')\nExpected string: \u001b[32m\"The provided credentials are invalid\"\u001b[39m\nReceived: <element(s) not found>\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"error-message\"]')\u001b[22m\n\n\n\u001b[90m   at \u001b[39m..\\helpers\\testHelpers.js:161\n\n\u001b[0m \u001b[90m 159 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Page contains error:'\u001b[39m\u001b[33m,\u001b[39m pageContent\u001b[33m.\u001b[39mincludes(\u001b[32m'error'\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 160 |\u001b[39m     \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 161 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=\"error-message\"]'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(message)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 162 |\u001b[39m   }\u001b[33m,\u001b[39m\n \u001b[90m 163 |\u001b[39m\n \u001b[90m 164 |\u001b[39m   \u001b[36masync\u001b[39m expectProductCreated(page\u001b[33m,\u001b[39m productName) {\u001b[0m\n\u001b[2m    at Object.expectErrorMessage (C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js:161:65)\u001b[22m\n\u001b[2m    at C:\\projektid\\cumroad-clone-api\\tests\\automation\\e2e\\auth.test.js:161:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Error message visible: \u001b[33mfalse\u001b[39m\n"
+                        },
+                        {
+                          "text": "Page contains error: \u001b[33mtrue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:20.987Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\test-results\\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\projektid\\cumroad-clone-api\\tests\\automation\\helpers\\testHelpers.js",
+                        "column": 65,
+                        "line": 161
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-04d9868406dc6752464f",
+              "file": "auth.test.js",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "XSS protection in registration form",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3207,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-22T21:07:22.208Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2d73e6464033218f2952-300f445c73767743f8be",
+              "file": "auth.test.js",
+              "line": 164,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-22T21:07:06.583Z",
+    "duration": 24739.199,
+    "expected": 5,
+    "skipped": 1,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

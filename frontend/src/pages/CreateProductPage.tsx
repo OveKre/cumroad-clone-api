@@ -8,7 +8,7 @@ import type { CreateProductFormData } from '../lib/validation';
 import { ErrorMessage, SuccessMessage } from '../components/Messages';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ApiError } from '../lib/api';
-import { ArrowLeft, Package, DollarSign, FileText, Image } from 'lucide-react';
+import { FiArrowLeft, FiPackage, FiDollarSign, FiFileText, FiImage } from 'react-icons/fi';
 
 export function CreateProductPage() {
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ export function CreateProductPage() {
             to="/dashboard"
             className="flex items-center text-secondary-600 hover:text-primary-600 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <FiArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
           </Link>
         </div>
@@ -70,7 +70,7 @@ export function CreateProductPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center mb-4">
-            <Package className="h-8 w-8 text-primary-600 mr-3" />
+            <FiPackage className="h-8 w-8 text-primary-600 mr-3" />
             <h1 className="text-3xl font-bold text-secondary-900">Create New Product</h1>
           </div>
           <p className="text-secondary-600">
@@ -99,7 +99,7 @@ export function CreateProductPage() {
             {/* Product Name */}
             <div>
               <label htmlFor="name" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <FileText className="h-4 w-4 mr-2" />
+                <FiFileText className="h-4 w-4 mr-2" />
                 Product Name *
               </label>
               <input
@@ -116,7 +116,7 @@ export function CreateProductPage() {
             {/* Description */}
             <div>
               <label htmlFor="description" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <FileText className="h-4 w-4 mr-2" />
+                <FiFileText className="h-4 w-4 mr-2" />
                 Description
               </label>
               <textarea
@@ -136,7 +136,7 @@ export function CreateProductPage() {
             {/* Price */}
             <div>
               <label htmlFor="price" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <DollarSign className="h-4 w-4 mr-2" />
+                <FiDollarSign className="h-4 w-4 mr-2" />
                 Price * (USD)
               </label>
               <div className="relative">
@@ -168,7 +168,7 @@ export function CreateProductPage() {
             {/* Image URL */}
             <div>
               <label htmlFor="imageUrl" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <Image className="h-4 w-4 mr-2" />
+                <FiImage className="h-4 w-4 mr-2" />
                 Product Image URL
               </label>
               <input
@@ -195,7 +195,7 @@ export function CreateProductPage() {
                 {createProductMutation.isPending ? (
                   <LoadingSpinner size="sm" />
                 ) : (
-                  <Package className="h-4 w-4" />
+                  <FiPackage className="h-4 w-4" />
                 )}
                 <span>
                   {createProductMutation.isPending ? 'Creating...' : 'Create Product'}

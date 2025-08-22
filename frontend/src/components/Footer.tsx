@@ -1,4 +1,4 @@
-import { ShoppingCart, Github, Mail, Heart } from 'lucide-react';
+import { FiShoppingCart, FiGithub, FiMail, FiHeart } from 'react-icons/fi';
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-xl font-bold text-primary-600">
-              <ShoppingCart className="h-8 w-8" />
+              <FiShoppingCart className="h-8 w-8" />
               <span>CumRoad</span>
             </div>
             <p className="text-secondary-600 text-sm">
@@ -79,13 +79,13 @@ export function Footer() {
                 href="#"
                 className="text-secondary-400 hover:text-primary-600 transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <FiGithub className="h-5 w-5" />
               </a>
               <a
                 href="#"
                 className="text-secondary-400 hover:text-primary-600 transition-colors"
               >
-                <Mail className="h-5 w-5" />
+                <FiMail className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -97,7 +97,7 @@ export function Footer() {
               © 2025 CumRoad Clone. Built for learning purposes.
             </p>
             <p className="text-secondary-500 text-sm flex items-center mt-4 md:mt-0">
-              Made with <Heart className="h-4 w-4 text-red-500 mx-1" /> for creators
+              Made with <FiHeart className="h-4 w-4 text-red-500 mx-1" /> for creators
             </p>
           </div>
         </div>

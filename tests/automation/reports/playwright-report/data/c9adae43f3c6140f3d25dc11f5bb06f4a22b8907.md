@@ -1,0 +1,100 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e6]:
+        - link "CumRoad" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8] [cursor=pointer]
+          - generic [ref=e12] [cursor=pointer]: CumRoad
+        - generic [ref=e13]:
+          - link "Home" [ref=e14] [cursor=pointer]:
+            - /url: /
+            - img [ref=e15] [cursor=pointer]
+            - generic [ref=e18] [cursor=pointer]: Home
+          - link "Products" [ref=e19] [cursor=pointer]:
+            - /url: /products
+            - img [ref=e20] [cursor=pointer]
+            - generic [ref=e24] [cursor=pointer]: Products
+        - generic [ref=e26]:
+          - link "Sign In" [ref=e27] [cursor=pointer]:
+            - /url: /login
+          - link "Sign Up" [ref=e28] [cursor=pointer]:
+            - /url: /register
+    - main [ref=e29]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - img [ref=e34]
+          - heading "Sign in to your account" [level=2] [ref=e38]
+          - paragraph [ref=e39]:
+            - text: Or
+            - link "create a new account" [ref=e40] [cursor=pointer]:
+              - /url: /register
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: Email address
+              - textbox "Enter your email" [ref=e45]
+            - generic [ref=e46]:
+              - generic [ref=e47]: Password
+              - textbox "Enter your password" [ref=e48]
+          - button "Sign in" [ref=e50] [cursor=pointer]
+          - link "← Back to home" [ref=e52] [cursor=pointer]:
+            - /url: /
+    - contentinfo [ref=e53]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - generic [ref=e62]: CumRoad
+            - paragraph [ref=e63]: A digital marketplace for creators to sell their products and buyers to discover amazing content.
+          - generic [ref=e64]:
+            - heading "Product" [level=3] [ref=e65]
+            - list [ref=e66]:
+              - listitem [ref=e67]:
+                - link "Browse Products" [ref=e68] [cursor=pointer]:
+                  - /url: /products
+              - listitem [ref=e69]:
+                - link "Sell Products" [ref=e70] [cursor=pointer]:
+                  - /url: /products/new
+              - listitem [ref=e71]:
+                - link "Dashboard" [ref=e72] [cursor=pointer]:
+                  - /url: /dashboard
+          - generic [ref=e73]:
+            - heading "Support" [level=3] [ref=e74]
+            - list [ref=e75]:
+              - listitem [ref=e76]:
+                - link "Help Center" [ref=e77] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e78]:
+                - link "Contact Us" [ref=e79] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e80]:
+                - link "Privacy Policy" [ref=e81] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e82]:
+                - link "Terms of Service" [ref=e83] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=e84]:
+            - heading "Connect" [level=3] [ref=e85]
+            - generic [ref=e86]:
+              - link [ref=e87] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e88] [cursor=pointer]
+              - link [ref=e90] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e91] [cursor=pointer]
+        - generic [ref=e95]:
+          - paragraph [ref=e96]: © 2025 CumRoad Clone. Built for learning purposes.
+          - paragraph [ref=e97]:
+            - text: Made with
+            - img [ref=e98]
+            - text: for creators
+  - generic [ref=e100]:
+    - img [ref=e102]
+    - button "Open Tanstack query devtools" [ref=e150] [cursor=pointer]:
+      - img [ref=e151] [cursor=pointer]
+```

@@ -5,7 +5,7 @@ import { useCreateOrder } from '../hooks/useOrders';
 import { useAuth } from '../contexts/AuthContext';
 import { LoadingPage } from '../components/LoadingSpinner';
 import { ErrorMessage, SuccessMessage } from '../components/Messages';
-import { Package, ShoppingCart, Calendar, User, ArrowLeft } from 'lucide-react';
+import { FiPackage, FiShoppingCart, FiCalendar, FiUser, FiArrowLeft } from 'react-icons/fi';
 import type { Product } from '../lib/types';
 
 export function ProductDetailPage() {
@@ -74,7 +74,7 @@ export function ProductDetailPage() {
             to="/products"
             className="flex items-center text-secondary-600 hover:text-primary-600 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <FiArrowLeft className="h-4 w-4 mr-2" />
             Back to Products
           </Link>
         </div>
@@ -94,7 +94,7 @@ export function ProductDetailPage() {
                 />
               ) : (
                 <div className="w-full h-96 bg-secondary-200 rounded-lg flex items-center justify-center shadow-lg">
-                  <Package className="h-24 w-24 text-secondary-400" />
+                  <FiPackage className="h-24 w-24 text-secondary-400" />
                 </div>
               )}
             </div>
@@ -109,11 +109,11 @@ export function ProductDetailPage() {
               
               <div className="flex items-center space-x-4 text-sm text-secondary-600 mb-6">
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-1" />
+                  <FiCalendar className="h-4 w-4 mr-1" />
                   <span>Created {new Date(typedProduct.createdAt).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center">
-                  <User className="h-4 w-4 mr-1" />
+                  <FiUser className="h-4 w-4 mr-1" />
                   <span>Seller ID: {typedProduct.userId}</span>
                 </div>
               </div>
@@ -213,7 +213,7 @@ export function ProductDetailPage() {
                     disabled={createOrderMutation.isPending}
                     className="w-full flex items-center justify-center space-x-2 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <ShoppingCart className="h-5 w-5" />
+                    <FiShoppingCart className="h-5 w-5" />
                     <span>
                       {createOrderMutation.isPending ? 'Processing...' : 'Purchase Now'}
                     </span>

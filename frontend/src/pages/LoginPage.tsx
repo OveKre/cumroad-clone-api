@@ -8,7 +8,7 @@ import type { LoginFormData } from '../lib/validation';
 import { ErrorMessage } from '../components/Messages';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ApiError } from '../lib/api';
-import { ShoppingCart } from 'lucide-react';
+import { FiShoppingCart } from 'react-icons/fi';
 
 export function LoginPage() {
   const { login } = useAuth();
@@ -49,7 +49,7 @@ export function LoginPage() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="flex justify-center">
-            <ShoppingCart className="h-12 w-12 text-primary-600" />
+            <FiShoppingCart className="h-12 w-12 text-primary-600" />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-secondary-900">
             Sign in to your account
@@ -84,6 +84,7 @@ export function LoginPage() {
                 autoComplete="email"
                 className="mt-1 input-field"
                 placeholder="Enter your email"
+                data-testid="email"
               />
               {errors.email && (
                 <p className="error-text">{errors.email.message}</p>
@@ -100,6 +101,7 @@ export function LoginPage() {
                 autoComplete="current-password"
                 className="mt-1 input-field"
                 placeholder="Enter your password"
+                data-testid="password"
               />
               {errors.password && (
                 <p className="error-text">{errors.password.message}</p>
@@ -112,6 +114,7 @@ export function LoginPage() {
               type="submit"
               disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              data-testid="login-button"
             >
               {isLoading ? (
                 <LoadingSpinner size="sm" className="mr-2" />

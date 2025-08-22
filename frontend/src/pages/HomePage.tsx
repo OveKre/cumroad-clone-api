@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useProducts } from '../hooks/useProducts';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/Messages';
-import { ShoppingCart, Star, Users, Package } from 'lucide-react';
+import { FiShoppingCart, FiStar, FiUsers, FiPackage } from 'react-icons/fi';
 import type { Product } from '../lib/types';
 
 function ProductCard({ product }: { product: Product }) {
@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: Product }) {
           />
         ) : (
           <div className="w-full h-48 bg-secondary-200 rounded-lg flex items-center justify-center">
-            <Package className="h-12 w-12 text-secondary-400" />
+            <FiPackage className="h-12 w-12 text-secondary-400" />
           </div>
         )}
       </div>
@@ -99,7 +99,7 @@ function FeaturedProducts() {
           </>
         ) : (
           <div className="text-center py-12">
-            <Package className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
+            <FiPackage className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-secondary-900 mb-2">
               No products yet
             </h3>
@@ -195,7 +195,7 @@ export function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="mx-auto h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <ShoppingCart className="h-8 w-8 text-primary-600" />
+                <FiShoppingCart className="h-8 w-8 text-primary-600" />
               </div>
               <h3 className="text-xl font-semibold text-secondary-900 mb-4">
                 Easy to Sell
@@ -208,7 +208,7 @@ export function HomePage() {
             
             <div className="text-center">
               <div className="mx-auto h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Users className="h-8 w-8 text-primary-600" />
+                <FiUsers className="h-8 w-8 text-primary-600" />
               </div>
               <h3 className="text-xl font-semibold text-secondary-900 mb-4">
                 Global Reach
@@ -221,7 +221,7 @@ export function HomePage() {
             
             <div className="text-center">
               <div className="mx-auto h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Star className="h-8 w-8 text-primary-600" />
+                <FiStar className="h-8 w-8 text-primary-600" />
               </div>
               <h3 className="text-xl font-semibold text-secondary-900 mb-4">
                 Quality Products

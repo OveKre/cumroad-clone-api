@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useProducts, useDeleteProduct } from '../hooks/useProducts';
 import { LoadingPage } from '../components/LoadingSpinner';
 import { ErrorMessage, SuccessMessage } from '../components/Messages';
-import { Package, Plus, Edit, Trash2, Eye } from 'lucide-react';
+import { FiPackage, FiPlus, FiEdit, FiTrash2, FiEye } from 'react-icons/fi';
 import type { Product } from '../lib/types';
 
 export function MyProductsPage() {
@@ -70,7 +70,7 @@ export function MyProductsPage() {
             to="/products/new"
             className="flex items-center space-x-2 btn-primary"
           >
-            <Plus className="h-4 w-4" />
+            <FiPlus className="h-4 w-4" />
             <span>Create Product</span>
           </Link>
         </div>
@@ -111,7 +111,7 @@ export function MyProductsPage() {
                       />
                     ) : (
                       <div className="w-full sm:w-32 h-32 bg-secondary-200 rounded-lg flex items-center justify-center">
-                        <Package className="h-8 w-8 text-secondary-400" />
+                        <FiPackage className="h-8 w-8 text-secondary-400" />
                       </div>
                     )}
                   </div>
@@ -147,7 +147,7 @@ export function MyProductsPage() {
                         to={`/products/${product.id}`}
                         className="flex items-center space-x-1 btn-secondary text-sm"
                       >
-                        <Eye className="h-4 w-4" />
+                        <FiEye className="h-4 w-4" />
                         <span>View</span>
                       </Link>
                       
@@ -155,7 +155,7 @@ export function MyProductsPage() {
                         to={`/products/${product.id}/edit`}
                         className="flex items-center space-x-1 btn-outline text-sm"
                       >
-                        <Edit className="h-4 w-4" />
+                        <FiEdit className="h-4 w-4" />
                         <span>Edit</span>
                       </Link>
                       
@@ -164,7 +164,7 @@ export function MyProductsPage() {
                         disabled={deletingId === product.id}
                         className="flex items-center space-x-1 bg-red-100 hover:bg-red-200 text-red-700 font-medium py-2 px-3 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <FiTrash2 className="h-4 w-4" />
                         <span>
                           {deletingId === product.id ? 'Deleting...' : 'Delete'}
                         </span>
@@ -177,7 +177,7 @@ export function MyProductsPage() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <Package className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
+            <FiPackage className="h-16 w-16 text-secondary-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-secondary-900 mb-2">
               No products yet
             </h3>
@@ -185,7 +185,7 @@ export function MyProductsPage() {
               Start by creating your first digital product to sell on the marketplace.
             </p>
             <Link to="/products/new" className="btn-primary">
-              <Plus className="h-4 w-4 mr-2" />
+              <FiPlus className="h-4 w-4 mr-2" />
               Create Your First Product
             </Link>
           </div>

@@ -10,7 +10,7 @@ import { LoadingPage } from '../components/LoadingSpinner';
 import { ErrorMessage, SuccessMessage } from '../components/Messages';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ApiError } from '../lib/api';
-import { ArrowLeft, Package, DollarSign, FileText, Image, Save } from 'lucide-react';
+import { FiArrowLeft, FiPackage, FiDollarSign, FiFileText, FiImage, FiSave } from 'react-icons/fi';
 import type { Product } from '../lib/types';
 
 export function EditProductPage() {
@@ -128,7 +128,7 @@ export function EditProductPage() {
             to="/my-products"
             className="flex items-center text-secondary-600 hover:text-primary-600 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <FiArrowLeft className="h-4 w-4 mr-2" />
             Back to My Products
           </Link>
         </div>
@@ -136,7 +136,7 @@ export function EditProductPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center mb-4">
-            <Package className="h-8 w-8 text-primary-600 mr-3" />
+            <FiPackage className="h-8 w-8 text-primary-600 mr-3" />
             <h1 className="text-3xl font-bold text-secondary-900">Edit Product</h1>
           </div>
           <p className="text-secondary-600">
@@ -165,7 +165,7 @@ export function EditProductPage() {
             {/* Product Name */}
             <div>
               <label htmlFor="name" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <FileText className="h-4 w-4 mr-2" />
+                <FiFileText className="h-4 w-4 mr-2" />
                 Product Name
               </label>
               <input
@@ -182,7 +182,7 @@ export function EditProductPage() {
             {/* Description */}
             <div>
               <label htmlFor="description" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <FileText className="h-4 w-4 mr-2" />
+                <FiFileText className="h-4 w-4 mr-2" />
                 Description
               </label>
               <textarea
@@ -199,7 +199,7 @@ export function EditProductPage() {
             {/* Price */}
             <div>
               <label htmlFor="price" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <DollarSign className="h-4 w-4 mr-2" />
+                <FiDollarSign className="h-4 w-4 mr-2" />
                 Price (USD)
               </label>
               <div className="relative">
@@ -231,7 +231,7 @@ export function EditProductPage() {
             {/* Image URL */}
             <div>
               <label htmlFor="imageUrl" className="flex items-center text-sm font-medium text-secondary-700 mb-2">
-                <Image className="h-4 w-4 mr-2" />
+                <FiImage className="h-4 w-4 mr-2" />
                 Product Image URL
               </label>
               <input
@@ -265,7 +265,7 @@ export function EditProductPage() {
                 {updateProductMutation.isPending ? (
                   <LoadingSpinner size="sm" />
                 ) : (
-                  <Save className="h-4 w-4" />
+                  <FiSave className="h-4 w-4" />
                 )}
                 <span>
                   {updateProductMutation.isPending ? 'Saving...' : 'Save Changes'}

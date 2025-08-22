@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { ShoppingCart, User, LogOut, Home, Package, Plus, Settings } from 'lucide-react';
+import { FiShoppingCart, FiUser, FiLogOut, FiHome, FiPackage, FiPlus, FiSettings } from 'react-icons/fi';
 
 export function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -26,7 +26,7 @@ export function Navbar() {
             to="/" 
             className="flex items-center space-x-2 text-xl font-bold text-primary-600"
           >
-            <ShoppingCart className="h-8 w-8" />
+            <FiShoppingCart className="h-8 w-8" />
             <span>CumRoad</span>
           </Link>
 
@@ -40,7 +40,7 @@ export function Navbar() {
                   : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
               }`}
             >
-              <Home className="h-4 w-4" />
+              <FiHome className="h-4 w-4" />
               <span>Home</span>
             </Link>
             
@@ -52,7 +52,7 @@ export function Navbar() {
                   : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
               }`}
             >
-              <Package className="h-4 w-4" />
+              <FiPackage className="h-4 w-4" />
               <span>Products</span>
             </Link>
 
@@ -66,7 +66,7 @@ export function Navbar() {
                       : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
                   }`}
                 >
-                  <User className="h-4 w-4" />
+                  <FiUser className="h-4 w-4" />
                   <span>Dashboard</span>
                 </Link>
 
@@ -78,7 +78,7 @@ export function Navbar() {
                       : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
                   }`}
                 >
-                  <Plus className="h-4 w-4" />
+                  <FiPlus className="h-4 w-4" />
                   <span>Create Product</span>
                 </Link>
               </>
@@ -105,14 +105,15 @@ export function Navbar() {
                     to="/profile"
                     className="p-2 text-secondary-400 hover:text-secondary-600 rounded-full hover:bg-secondary-100 transition-colors"
                   >
-                    <Settings className="h-5 w-5" />
+                    <FiSettings className="h-5 w-5" />
                   </Link>
                   
                   <button
                     onClick={handleLogout}
                     className="p-2 text-secondary-400 hover:text-red-600 rounded-full hover:bg-red-50 transition-colors"
+                    data-testid="logout-button"
                   >
-                    <LogOut className="h-5 w-5" />
+                    <FiLogOut className="h-5 w-5" />
                   </button>
                 </div>
               </div>
@@ -121,6 +122,7 @@ export function Navbar() {
                 <Link
                   to="/login"
                   className="text-secondary-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  data-testid="login-link"
                 >
                   Sign In
                 </Link>

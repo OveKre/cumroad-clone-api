@@ -8,7 +8,7 @@ import type { RegisterFormData } from '../lib/validation';
 import { ErrorMessage, SuccessMessage } from '../components/Messages';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ApiError } from '../lib/api';
-import { ShoppingCart } from 'lucide-react';
+import { FiShoppingCart } from 'react-icons/fi';
 
 export function RegisterPage() {
   const { register: registerUser } = useAuth();
@@ -54,7 +54,7 @@ export function RegisterPage() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="flex justify-center">
-            <ShoppingCart className="h-12 w-12 text-primary-600" />
+            <FiShoppingCart className="h-12 w-12 text-primary-600" />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-secondary-900">
             Create your account
@@ -96,6 +96,7 @@ export function RegisterPage() {
                 autoComplete="email"
                 className="mt-1 input-field"
                 placeholder="Enter your email"
+                data-testid="email"
               />
               {errors.email && (
                 <p className="error-text">{errors.email.message}</p>
@@ -112,6 +113,7 @@ export function RegisterPage() {
                 autoComplete="name"
                 className="mt-1 input-field"
                 placeholder="Enter your full name"
+                data-testid="name"
               />
               {errors.name && (
                 <p className="error-text">{errors.name.message}</p>
@@ -128,6 +130,7 @@ export function RegisterPage() {
                 autoComplete="new-password"
                 className="mt-1 input-field"
                 placeholder="Create a password"
+                data-testid="password"
               />
               {errors.password && (
                 <p className="error-text">{errors.password.message}</p>
@@ -144,6 +147,7 @@ export function RegisterPage() {
                 autoComplete="new-password"
                 className="mt-1 input-field"
                 placeholder="Confirm your password"
+                data-testid="confirmPassword"
               />
               {errors.confirmPassword && (
                 <p className="error-text">{errors.confirmPassword.message}</p>
@@ -156,6 +160,7 @@ export function RegisterPage() {
               type="submit"
               disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              data-testid="register-button"
             >
               {isLoading ? (
                 <LoadingSpinner size="sm" className="mr-2" />

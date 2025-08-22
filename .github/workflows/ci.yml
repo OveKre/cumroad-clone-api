@@ -1,0 +1,91 @@
+name: CumRoad Clone CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install backend dependencies
+      run: npm ci
+    
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm ci
+    
+    - name: Lint backend code
+      run: npm run lint --if-present
+    
+    - name: Lint frontend code
+      run: |
+        cd frontend
+        npm run lint
+    
+    - name: Run backend unit tests
+      run: npm test --if-present
+    
+    - name: Run frontend unit tests
+      run: |
+        cd frontend
+        npm test --if-present
+    
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
+    
+    - name: Start backend server for E2E tests
+      run: |
+        npm start &
+        sleep 10
+    
+    - name: Run E2E tests
+      run: |
+        cd tests/automation/e2e
+        npm test --if-present
+    
+    - name: Generate test reports
+      if: always()
+      run: |
+        mkdir -p reports
+        echo "# Test Run Report - $(date '+%Y-%m-%d %H:%M:%S')" > reports/testrun_$(date '+%Y-%m-%d').md
+        echo "Build: ${{ github.sha }}" >> reports/testrun_$(date '+%Y-%m-%d').md
+        echo "Status: ${{ job.status }}" >> reports/testrun_$(date '+%Y-%m-%d').md
+    
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-reports-${{ matrix.node-version }}
+        path: |
+          reports/
+          tests/automation/*/coverage/
+          tests/automation/*/screenshots/
+        retention-days: 30
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      if: always()
+      with:
+        directory: ./reports/coverage/
+        flags: unittests
+        name: codecov-umbrella

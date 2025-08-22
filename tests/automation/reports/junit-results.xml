@@ -1,0 +1,317 @@
+<testsuites id="" name="" tests="8" failures="2" skipped="1" errors="0" time="24.739199">
+<testsuite name="auth.test.js" timestamp="2025-08-22T21:07:06.663Z" hostname="chromium" tests="8" failures="2" skipped="1" time="64.597" errors="0">
+<testcase name="Authentication Flow › TC-001: Successful login with valid credentials" classname="auth.test.js" time="9.419">
+</testcase>
+<testcase name="Authentication Flow › TC-002: Failed login with invalid credentials" classname="auth.test.js" time="17.788">
+<failure message="auth.test.js:38:3 TC-002: Failed login with invalid credentials" type="FAILURE">
+<![CDATA[  [chromium] › auth.test.js:38:3 › Authentication Flow › TC-002: Failed login with invalid credentials 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[data-testid="error-message"]')
+    Expected string: "The provided credentials are invalid"
+    Received: <element(s) not found>
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" with timeout 5000ms
+      - waiting for locator('[data-testid="error-message"]')
+
+
+       at ..\helpers\testHelpers.js:161
+
+      159 |     console.log('Page contains error:', pageContent.includes('error'));
+      160 |     
+    > 161 |     await expect(page.locator('[data-testid="error-message"]')).toContainText(message);
+          |                                                                 ^
+      162 |   },
+      163 |
+      164 |   async expectProductCreated(page, productName) {
+        at Object.expectErrorMessage (C:\projektid\cumroad-clone-api\tests\automation\helpers\testHelpers.js:161:65)
+        at C:\projektid\cumroad-clone-api\tests\automation\e2e\auth.test.js:73:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Network responses: [
+  { url: [32m'http://localhost:3002/sessions'[39m, status: [33m401[39m },
+  { url: [32m'http://localhost:5173/login'[39m, status: [33m200[39m },
+  { url: [32m'http://localhost:5173/@vite/client'[39m, status: [33m304[39m },
+  {
+    url: [32m'http://localhost:5173/src/main.tsx?t=1755896601775'[39m,
+    status: [33m304[39m
+  },
+  { url: [32m'http://localhost:5173/@react-refresh'[39m, status: [33m304[39m },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-JOFQVQT6.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-WOOG5QLI.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-DSM2NOFT.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/vite/dist/client/env.mjs'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/index.css?t=1755896601775'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/App.tsx?t=1755896601775'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/@tanstack_react-query-devtools.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-E3WM7SMZ.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-GE7WVSOR.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-UV2IVRSK.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/contexts/AuthContext.tsx'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/components/Navbar.tsx?t=1755891464891'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/components/Footer.tsx'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react-icons_fi.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/components/ProtectedRoute.tsx'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/HomePage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/LoginPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/react-hook-form.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/@hookform_resolvers_zod.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-KKWC7L6V.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-CTPGWJ77.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/RegisterPage.tsx?t=1755896601775'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/ProductsPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/ProductDetailPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/CreateProductPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/MyProductsPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/pages/EditProductPage.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  { url: [32m'http://localhost:5173/src/TestPage.tsx'[39m, status: [33m304[39m },
+  { url: [32m'http://localhost:5173/src/lib/api.ts'[39m, status: [33m304[39m },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/axios.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/components/LoadingSpinner.tsx'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/hooks/useProducts.ts'[39m,
+    status: [33m304[39m
+  },
+  {
+    url: [32m'http://localhost:5173/src/components/Messages.tsx?t=1755893777656'[39m,
+    status: [33m304[39m
+  },
+  { url: [32m'http://localhost:5173/src/lib/validation.ts'[39m, status: [33m304[39m },
+  { url: [32m'http://localhost:5173/src/hooks/useOrders.ts'[39m, status: [33m304[39m },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/zod.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/EDEL3XIZ-MXTYWUC5.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  },
+  {
+    url: [32m'http://localhost:5173/node_modules/.vite/deps/chunk-BDK6UKTR.js?v=5fa44322'[39m,
+    status: [33m200[39m
+  }
+]
+Error element visible: [33mfalse[39m
+Page contains "invalid": [33mfalse[39m
+Page contains "error": [33mfalse[39m
+Error message visible: [33mfalse[39m
+Page contains error: [33mtrue[39m
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Flow-T-95c78-in-with-invalid-credentials-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › TC-003: Successful user registration" classname="auth.test.js" time="10.715">
+<system-out>
+<![CDATA[PAGE LOG: [vite] connecting...
+PAGE LOG: [vite] connected.
+PAGE LOG: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+PAGE LOG: ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+PAGE LOG: ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Clicking register button...
+Waiting for backend responses...
+Backend responses: [
+  { url: [32m'http://localhost:3002/users'[39m, status: [33m201[39m },
+  { url: [32m'http://localhost:3002/sessions'[39m, status: [33m201[39m }
+]
+Successfully redirected to dashboard
+Network responses: [
+  { url: [32m'http://localhost:3002/products'[39m, status: [33m200[39m },
+  { url: [32m'http://localhost:3002/users'[39m, status: [33m201[39m },
+  { url: [32m'http://localhost:3002/sessions'[39m, status: [33m201[39m }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › TC-004: Successful logout" classname="auth.test.js" time="8.406">
+</testcase>
+<testcase name="Authentication Flow › Protected route access without authentication" classname="auth.test.js" time="2.938">
+</testcase>
+<testcase name="Authentication Flow › Token expiry handling" classname="auth.test.js" time="2.817">
+<properties>
+<property name="skip" value="Requires backend configuration for short token expiry">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Authentication Security Tests › SQL Injection protection in login form" classname="auth.test.js" time="9.307">
+<failure message="auth.test.js:151:3 SQL Injection protection in login form" type="FAILURE">
+<![CDATA[  [chromium] › auth.test.js:151:3 › Authentication Security Tests › SQL Injection protection in login form 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[data-testid="error-message"]')
+    Expected string: "The provided credentials are invalid"
+    Received: <element(s) not found>
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" with timeout 5000ms
+      - waiting for locator('[data-testid="error-message"]')
+
+
+       at ..\helpers\testHelpers.js:161
+
+      159 |     console.log('Page contains error:', pageContent.includes('error'));
+      160 |     
+    > 161 |     await expect(page.locator('[data-testid="error-message"]')).toContainText(message);
+          |                                                                 ^
+      162 |   },
+      163 |
+      164 |   async expectProductCreated(page, productName) {
+        at Object.expectErrorMessage (C:\projektid\cumroad-clone-api\tests\automation\helpers\testHelpers.js:161:65)
+        at C:\projektid\cumroad-clone-api\tests\automation\e2e\auth.test.js:161:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Error message visible: [33mfalse[39m
+Page contains error: [33mtrue[39m
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\auth-Authentication-Securi-6a207-on-protection-in-login-form-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Security Tests › XSS protection in registration form" classname="auth.test.js" time="3.207">
+</testcase>
+</testsuite>
+</testsuites>

@@ -13,6 +13,7 @@ import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CreateProductPage } from './pages/CreateProductPage';
 import { MyProductsPage } from './pages/MyProductsPage';
 import { EditProductPage } from './pages/EditProductPage';
+import { TestPage } from './TestPage';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -39,6 +40,9 @@ function App() {
             <Navbar />
             <main>
               <Routes>
+                {/* Test route */}
+                <Route path="/test" element={<TestPage />} />
+                
                 {/* Public routes */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
