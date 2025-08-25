@@ -81,6 +81,19 @@ export function Navbar() {
                   <FiPlus className="h-4 w-4" />
                   <span>Create Product</span>
                 </Link>
+
+                <Link 
+                  to="/users"
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive('/users') 
+                      ? 'text-primary-600 bg-primary-50' 
+                      : 'text-secondary-700 hover:text-primary-600 hover:bg-secondary-50'
+                  }`}
+                  data-testid="users-nav-link"
+                >
+                  <FiUser className="h-4 w-4" />
+                  <span>Users</span>
+                </Link>
               </>
             )}
           </div>

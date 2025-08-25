@@ -78,17 +78,5 @@ module.exports = defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: [
-    {
-      command: 'npm start',
-      port: 3002,
-      reuseExistingServer: !process.env.CI,
-    },
-    {
-      command: 'cd frontend && npm run dev',
-      port: 5173,
-      reuseExistingServer: !process.env.CI,
-    }
-  ],
+  /* Servers are manually started */
 });

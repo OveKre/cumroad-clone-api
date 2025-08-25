@@ -13,6 +13,9 @@ import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CreateProductPage } from './pages/CreateProductPage';
 import { MyProductsPage } from './pages/MyProductsPage';
 import { EditProductPage } from './pages/EditProductPage';
+import { UserManagementPage } from './pages/UserManagementPage';
+import { UserDetailPage } from './pages/UserDetailPage';
+import { UserEditPage } from './pages/UserEditPage';
 import { TestPage } from './TestPage';
 
 // Create a client
@@ -75,6 +78,11 @@ function App() {
                               <p className="text-secondary-600 mb-4">Add a new digital product</p>
                               <a href="/products/new" className="btn-primary text-sm">Create Now</a>
                             </div>
+                            <div className="card">
+                              <h3 className="text-lg font-semibold text-secondary-900 mb-2">User Management</h3>
+                              <p className="text-secondary-600 mb-4">Manage system users</p>
+                              <a href="/users" className="btn-primary text-sm">Manage Users</a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -120,6 +128,34 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <CreateProductPage />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                {/* User Management Routes */}
+                <Route
+                  path="/users"
+                  element={
+                    <ProtectedRoute>
+                      <UserManagementPage />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                <Route
+                  path="/users/:id"
+                  element={
+                    <ProtectedRoute>
+                      <UserDetailPage />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                <Route
+                  path="/users/:id/edit"
+                  element={
+                    <ProtectedRoute>
+                      <UserEditPage />
                     </ProtectedRoute>
                   }
                 />
